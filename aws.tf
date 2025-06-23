@@ -3,7 +3,8 @@ locals {
 }
 
 resource "aws_instance" "my_server" {
-    ami = "ami-09e6f87a47903347c"
+    count = 3
+    ami = data.aws_ami.amazon_linux_3.id
     instance_type = var.instance_type
 
     tags = {
@@ -12,4 +13,17 @@ resource "aws_instance" "my_server" {
 
     }
   
+}
+
+data "aws_ami" "amazon_linux_3" {
+  most_recent = true
+  owners = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["al2023-*"] # Adjust the regex as needed for the exact name pattern
+  }
+  filter {
+    name = "virtualization-type"
+    values = ["hvm"]
+  }
 }
