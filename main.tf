@@ -21,3 +21,10 @@ provider "aws" {
   region = "us-east-1"
 
 }
+
+# Provider Block
+provider "aws" {
+  region = "us-west-1"
+  alias = "west"
+
+}
