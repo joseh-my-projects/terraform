@@ -1,10 +1,5 @@
 variable "instance_type" {
+    description = "AMI used for ecs_lt"
     type = string
-  
-}
-
-variable "instance_names" {
-    type = list(string)
-    default = ["webserver1", "webserver2"]
-  
+    default = "t3.micro"
 }
