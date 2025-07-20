@@ -1,13 +1,13 @@
 # Terraform Block
 terraform {
 
-#  cloud { 
-#    organization = "keeper84_org" 
+  #  cloud { 
+  #    organization = "keeper84_org" 
 
-#    workspaces { 
-#      name = "terraform-workspace" 
-#    } 
-#  }
+  #    workspaces { 
+  #      name = "terraform-workspace" 
+  #    } 
+  #  }
 
   required_providers {
     aws = {
@@ -19,6 +19,6 @@ terraform {
 
 # Provider Block
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-east-1"
   profile = "default"
 }
