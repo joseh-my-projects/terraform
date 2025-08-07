@@ -11,21 +11,25 @@ resource "aws_security_group" "ecs_sg" {
   name        = "Allow http"
   description = "Allowing traffic on port 80"
 
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+
+    content {
+      description = ingress.key
+      from_port = ingress.value.port
+      to_port = ingress.value.port
+      cidr_blocks = module.vpc.cidr_block
+
+    }
+    
+  }
+
   tags = {
     Name = "ecs_sg"
   }
 }
 
-resource "aws_vpc_security_group_ingress_rule" "ingress_rules" {
-  security_group_id = aws_security_group.ecs_sg.id
-  for_each          = local.ingress_rules
 
-  cidr_ipv4   = each.value.cidr_ipv4
-  from_port   = each.value.from_port
-  ip_protocol = each.value.ip_protocol
-  to_port     = each.value.to_port
-
-}
 
 resource "aws_lb" "ecs_lb" {
   name               = "ecs-alb"
