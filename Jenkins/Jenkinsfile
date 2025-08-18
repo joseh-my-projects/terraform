@@ -4,17 +4,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-
+                echo "Checkout"
             }
         }
         stage('Terraform Init/Fmt/Validate') {
             steps {
-
+                echo "Terraform"
             }
         }
         stage('Terraform Plan') {
             steps {
-
+                echo "Plan"
             }
         }
         stage("Confirm Apply") {
@@ -25,12 +25,10 @@ pipeline {
             }
         }
         stage('Apply') {
-            
+            steps {
+                echo "Applied"
+            }
+
         }
-
-
-
     }
-
-
 }
