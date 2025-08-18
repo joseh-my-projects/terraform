@@ -1,17 +1,14 @@
-output "subnet1_id" {
-  value = aws_subnet.subnets["subnet-1"].id
-}
-
-output "subnet2_id" {
-  value = aws_subnet.subnets["subnet-2"].id
-}
-
 output "vpc_id" {
-  description = "ID of VPC"
-  value       = aws_vpc.main.id
+  description = "VPC ID"
+  value = module.vpc.vpc_id
 }
 
-output "cidr_block" {
-  value = aws_vpc.main.cidr_block
-  
+output "public_subnets" {
+  description = "List of ID's of public subnets"
+  value       = module.vpc.public_subnets
+}
+
+output "private_subnets" {
+  description = "List of ID's of private subnets"
+  value       = module.vpc.private_subnets
 }

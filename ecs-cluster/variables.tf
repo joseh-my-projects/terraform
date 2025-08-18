@@ -4,16 +4,3 @@ variable "cluster_name" {
 
 }
 
-variable "ingress_rules" {
-  type = map(object({
-    port = number
-  }))
-  default = {
-    "http" = {
-      port = 80
-    },
-    "https" = {
-      port = 443
-    }
-  }
-  }

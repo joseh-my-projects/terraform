@@ -1,14 +1,5 @@
 # Terraform Block
 terraform {
-
-  #  cloud { 
-  #    organization = "keeper84_org" 
-
-  #    workspaces { 
-  #      name = "terraform-workspace" 
-  #    } 
-  #  }
-
   required_providers {
     aws = {
       source  = "hashicorp/aws"

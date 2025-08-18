@@ -1,45 +1,32 @@
-resource "aws_vpc" "main" {
-  cidr_block = var.vpc_cidr
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "6.0.1"
+
+  name            = var.vpc_name
+  cidr            = var.cidr_block
+  azs             = var.availability_zones
+  public_subnets  = var.public_subnets
+  private_subnets = var.private_subnets
+
+  enable_nat_gateway = true
+  single_nat_gateway = true
+
   enable_dns_hostnames = true
+  enable_dns_support   = true
+
+  public_subnet_tags = {
+    Name = "Public-subnets"
+  }
+  private_subnet_tags = {
+    Name = "Private-subnets"
+  }
 
   tags = {
-    Name = "main-vpc"
+    Environment = var.environment
   }
-}
 
-resource "aws_subnet" "subnets" {
-  for_each = local.subnets
-
-  vpc_id                  = aws_vpc.main.id
-  cidr_block              = each.value.cidr_block
-  map_public_ip_on_launch = var.public_ip
-  availability_zone       = each.value.availability_zone
-
-  tags = {
-    Name = each.key
-  }
-}
-
-resource "aws_internet_gateway" "internet_gateway" {
-  vpc_id = aws_vpc.main.id
-  tags = {
-    Name = "internet_gateway"
-  }
-}
-
-resource "aws_route_table" "route_table" {
-  vpc_id = aws_vpc.main.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.internet_gateway.id
+  vpc_tags = {
+    Name = "Main-VPC"
   }
 
 }
-
-resource "aws_route_table_association" "subnet_route" {
-  for_each       = local.subnets
-  subnet_id      = aws_subnet.subnets[each.key].id
-  route_table_id = aws_route_table.route_table.id
-}
-
-

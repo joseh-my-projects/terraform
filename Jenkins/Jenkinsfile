@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+
+            }
+        }
+        stage('Terraform Init/Fmt/Validate') {
+            steps {
+
+            }
+        }
+        stage('Terraform Plan') {
+            steps {
+
+            }
+        }
+        stage("Confirm Apply") {
+            steps {
+                input {
+                    message "Continue with Apply?"
+                }
+            }
+        }
+        stage('Apply') {
+            
+        }
+
+
+
+    }
+
+
+}
