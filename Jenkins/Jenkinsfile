@@ -17,12 +17,12 @@ pipeline {
                 echo "Plan"
             }
         }
-        stage("Confirm Apply") {
+        stage('Confirmation') {
             steps {
                 input {
-                    message "Continue with Apply?"
+                    message "Press Ok to continue with the deployment."
                 }
-                echo 'Deployment approved by user.'
+                echo "Deployment confirmed. Proceeding..."
             }
         }
         stage('Apply') {
