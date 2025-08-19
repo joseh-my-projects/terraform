@@ -22,6 +22,7 @@ pipeline {
                 input {
                     message "Continue with Apply?"
                 }
+                echo 'Deployment approved by user.'
             }
         }
         stage('Apply') {
