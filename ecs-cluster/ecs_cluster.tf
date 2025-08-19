@@ -66,7 +66,7 @@ resource "aws_ecs_service" "ecs_test_service" {
   }
 
   lifecycle {
-    ignore_changes = [ all ]
+    ignore_changes = all
   }
 }
 
