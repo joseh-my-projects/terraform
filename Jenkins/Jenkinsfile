@@ -9,9 +9,12 @@ pipeline {
         }
         stage('Terraform Init/Fmt/Validate') {
             steps {
-                sh "terraform init"
-                sh "terraform fmt"
-                sh "terraform validate"
+                sh '''
+                cd terraform
+                terraform init
+                terraform fmt
+                terraform validate
+                '''
             }
         }
         stage('Terraform Plan') {
