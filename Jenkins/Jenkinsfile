@@ -22,12 +22,10 @@ pipeline {
                 input message "Press Ok to continue with the deployment."
                 }
             }
-        }
         stage('Apply') {
             steps {
                 echo "Applied"
             }
-
         }
     }
 }
