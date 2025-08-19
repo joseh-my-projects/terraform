@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Approval') {
             steps {
-                input message: "Press Ok to continue with the deployment."
+                input message: "Click proceed to continue with the deployment."
                 }
             }
         stage('Apply') {
