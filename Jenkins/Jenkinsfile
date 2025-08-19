@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo "Checkout"
+                git branch: 'main', url: 'https://github.com/joseh-my-projects/terraform.git'
             }
         }
         stage('Terraform Init/Fmt/Validate') {
