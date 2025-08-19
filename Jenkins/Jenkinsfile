@@ -9,14 +9,14 @@ pipeline {
         }
         stage('Terraform Init/Fmt/Validate') {
             steps {
-                sh "pwd"
-                echo "Terraform"
+                sh "terraform init"
+                sh "terraform fmt"
+                sh "terraform validate"
             }
         }
         stage('Terraform Plan') {
             steps {
-                sh "pwd"
-                echo "Plan"
+                sh "terraform plan"
             }
         }
         stage('Approval') {
