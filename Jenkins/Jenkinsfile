@@ -10,7 +10,7 @@ pipeline {
         stage('Terraform Init/Fmt/Validate') {
             steps {
                 sh '''
-                cd terraform
+                cd ./ecs-cluster
                 terraform init
                 terraform fmt
                 terraform validate
