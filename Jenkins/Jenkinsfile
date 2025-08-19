@@ -7,15 +7,17 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/joseh-my-projects/terraform.git'
             }
         }
-        stage('Terraform Init/Fmt/Validate') {
+        stage('Terraform Init/Fmt/Validate/Plan') {
             steps {
-                sh '''
-                cd ./ecs-cluster
-                terraform init
-                terraform fmt
-                terraform validate
-                terraform plan
-                '''
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS']]) {
+                    sh '''
+                    cd ./ecs-cluster
+                    terraform init
+                    terraform fmt
+                    terraform validate
+                    terraform plan
+                    '''
+                }
             }
         }
         stage('Approval') {
